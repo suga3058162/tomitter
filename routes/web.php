@@ -11,13 +11,15 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/', 'RegistrationController@index');
 
 Route::get('twitter/login', 'TwitterController@login')->name('twitter.login');
 Route::get('twitter/callback', 'TwitterController@callback')->name('twitter.callback');
