@@ -2,8 +2,15 @@
 
 namespace App;
 
+// use Illuminate\Notifications\Notifiable;
+// use Illuminate\Foundation\Auth\User as Authenticatable;
+
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+// use App\Traits\UserObservable;
 
 class User extends Authenticatable
 {
@@ -15,7 +22,18 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name',
+        'yahoo_uid',
+        'twitter_uid',
+        'twitter_raw_info',
+        'battery_count',
+        'is_rule_skip',
+        'first_login_at',
+        'last_login_at',
+        'is_skip_rule',
+        'last_tweet_preset_id',
+        'createed_at',
+        'updated_at'
     ];
 
     /**
