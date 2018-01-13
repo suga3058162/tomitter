@@ -24,7 +24,6 @@ class TwitterController extends Controller
 
         if (isset($token['oauth_token_secret'])) {
             $url = Twitter::getAuthorizeURL($token, $sign_in_twitter, $force_login);
-            dd($url);
 
             Session::put('oauth_state', 'start');
             Session::put('oauth_request_token', $token['oauth_token']);
