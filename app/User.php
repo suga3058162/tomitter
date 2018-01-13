@@ -26,4 +26,15 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function isTwitterOAuth()
+    {
+        if($this->twitter_uid && $this->twitter_raw_info){
+            $isTwitterOAuth = true;
+        }else{
+            $isTwitterOAuth = false;
+        }
+        return $isTwitterOAuth;
+    }
+
 }
