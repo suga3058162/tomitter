@@ -22,5 +22,7 @@ Auth::routes();
 Route::get('/', 'RegistrationController@index');
 
 Route::get('twitter/login', 'TwitterController@login')->name('twitter.login');
+// Route::get('twitter/login', 'LoginController@redirectToTwitter');
 Route::get('twitter/callback', 'TwitterController@callback')->name('twitter.callback');
+// Route::get('twitter/callback', 'LoginController@handleTwitterCallback')->name('twitter.callback');
 Route::get('twitter/logout', 'TwitterController@logout')->name('twitter.logout');

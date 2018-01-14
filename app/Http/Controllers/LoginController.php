@@ -99,4 +99,18 @@ class LoginController extends Controller
             return redirect::to($this->TwitterAccess->login());
         }
     }
+
+    // public function handleTwitterCallback()
+    // {
+        // $user = Auth::user();
+        // $viewVars = $this->getCommonData($user->id);
+        // $this->TwitterAccess->updateAndSetSeccionAccessToken($request,$user);
+        // $path = 'tweet.confirm';
+
+        // $tweetPreset = $this->TweetPreset->getRandomTweetPreset($user->last_tweet_preset_id);
+        // $viewVars['tweetPreset'] = $tweetPreset;
+
+        // return view($path, $viewVars);
+        // return view('twitter/login');
+    // }
 }

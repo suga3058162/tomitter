@@ -43,8 +43,15 @@ class TwitterController extends Controller
           return Redirect('');
     }
 
-    public function callback()
+    public function callback(Request $request)
     {
+        // キャンセルが押されたときの処理
+        // deniedが必ずパラメータについているのでそれで判断します。
+        $is_cancel = key($request->query()) === 'denied' ? true : false;
+        if ($is_cancel) {
+            return redirect('/');
+        }
+
         // リクエストトークンがセッションに保持されている時
         if (Session::has('oauth_request_token')) {
             // リクエストトークンとシークレットをそれぞれセット
@@ -64,6 +71,7 @@ class TwitterController extends Controller
 
             // getAccessToken() will reset the token for you
             // アクセストークンを取得
+            // $oauth_verifierが空の場合、うまく連携できていないのでエラーが出力されます
             $token = Twitter::getAccessToken($oauth_verifier);
             if (!isset($token['oauth_token_secret'])) {
                 return Redirect::route('twitter.login')->with('flash_error', 'We could not log you in on Twitter.');
@@ -107,7 +115,8 @@ class TwitterController extends Controller
                 return Redirect::to('/test1')->with('flash_notice', 'Congrats! You\'ve successfully signed in!');
             }
             // ログイン前の画面へ遷移
-            return Redirect('/twitter/login');
+            // return Redirect('/twitter/login');
+            return Redirect::route('twitter.error')->with('flash_error', 'Crab! Something went wrong while signing you up!');
         }
     }
 }
