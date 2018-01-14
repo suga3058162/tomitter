@@ -88,17 +88,17 @@ class LoginController extends Controller
     }
 
     // eelから引用
-    public function redirectToTwitter()
-    {
-        $user = Auth::user();
-        $viewVars = $this->getCommonData($user->id);
-        if($user->isTwitterOAuth()){
-            $this->TwitterAccess->accessByDBTwitterInfo($user);
-            return redirect('/campaign/tweet/confirm/#display');
-        }else{
-            return redirect::to($this->TwitterAccess->login());
-        }
-    }
+    // public function redirectToTwitter()
+    // {
+    //     $user = Auth::user();
+    //     $viewVars = $this->getCommonData($user->id);
+    //     if($user->isTwitterOAuth()){
+    //         $this->TwitterAccess->accessByDBTwitterInfo($user);
+    //         return redirect('/campaign/tweet/confirm/#display');
+    //     }else{
+    //         return redirect::to($this->TwitterAccess->login());
+    //     }
+    // }
 
     // public function handleTwitterCallback()
     // {

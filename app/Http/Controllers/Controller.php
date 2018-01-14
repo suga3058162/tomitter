@@ -23,21 +23,21 @@ class Controller extends BaseController
         // $this->serial = \App::make('\App\Models\Serial');
     }
 
-    public function getCommonData($userId = null)
-    {
-        if($userId){
+    // public function getCommonData($userId = null)
+    // {
+        // if($userId){
             // ユーザ情報取得
-            $response['user'] = $this->user->where('id', $userId)->first();
+            // $response['user'] = $this->user->where('id', $userId)->first();
 
             // 現在のボール情報取得
-            $response['game'] = $this->game->getNowPlayGame($userId);
-            $response['ballPaths'] = $this->game->getBallimagePath();
+            // $response['game'] = $this->game->getNowPlayGame($userId);
+            // $response['ballPaths'] = $this->game->getBallimagePath();
 
             // ユーザ取得済のインセンティブを取得
-            $response['userIncentives'] = $this->userIncentive->getUserIncentiveList($userId);
-        }
+        //     $response['userIncentives'] = $this->userIncentive->getUserIncentiveList($userId);
+        // }
         // インセンティブ情報取得
-        $response['incentives'] = $this->incentive->get();
-        return $response;
-    }
+    //     $response['incentives'] = $this->incentive->get();
+    //     return $response;
+    // }
 }

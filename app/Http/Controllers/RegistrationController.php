@@ -14,8 +14,4 @@ class RegistrationController extends Controller
         return view('registration.index');
     }
 
-    // public function thanks (Request $request)
-    // {
-    //     return view('registration.thanks');
-    // }
 }

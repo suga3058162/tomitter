@@ -93,10 +93,6 @@ class TwitterController extends Controller
                 // sessionに接続情報に保存
                 Session::put('access_token', $token);
 
-                // nullになった
-                // $user = Auth::user();
-                // dd($user);
-
                 // usersテーブルへログインユーザー情報を保存
                 $user = User::updateOrCreate(
                     ['twitter_uid' => $credentials->id],
@@ -115,7 +111,6 @@ class TwitterController extends Controller
                 return Redirect::to('/test1')->with('flash_notice', 'Congrats! You\'ve successfully signed in!');
             }
             // ログイン前の画面へ遷移
-            // return Redirect('/twitter/login');
             return Redirect::route('twitter.error')->with('flash_error', 'Crab! Something went wrong while signing you up!');
         }
     }
