@@ -15,6 +15,28 @@ use App\User;
 
 class TwitterController extends Controller
 {
+    public function index()
+    {
+    // 認証されたユーザー情報の取得
+    $authorized_user = Twitter::getCredentials();
+    // dd($authorized_user);
+    // タイムラインの取得
+    // getHomeTimeline()は自分がフォローしているいユーザーのツイートを取得する
+    // 配列でオプションを指定する
+    $home_time_lines = Twitter::getHomeTimeline([
+        // screen_nameは@以降の部分
+        'screen_name' => $authorized_user->screen_name,
+        // 取得件数
+        'count' => 10,
+        // 取得結果の型
+        'format' => 'array'
+    ]);
+    // dd($home_time_lines);
+    
+    // ビュー
+    return view('twitter.index', compact('home_time_lines'));
+    }
+
     public function login()
     {
         $sign_in_twitter = true;
@@ -108,7 +130,7 @@ class TwitterController extends Controller
                 $user->save();
 
                 // ログイン後の画面へ遷移
-                return Redirect::to('/test1')->with('flash_notice', 'Congrats! You\'ve successfully signed in!');
+                return Redirect::to('twitter')->with('flash_notice', 'Congrats! You\'ve successfully signed in!');
             }
             // ログイン前の画面へ遷移
             return Redirect::route('twitter.error')->with('flash_error', 'Crab! Something went wrong while signing you up!');
