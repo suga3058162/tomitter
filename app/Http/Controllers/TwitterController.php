@@ -136,4 +136,21 @@ class TwitterController extends Controller
             return Redirect::route('twitter.error')->with('flash_error', 'Crab! Something went wrong while signing you up!');
         }
     }
+
+    public function tweet(Request $request)
+    {
+        return view('twitter.tweet');
+    }
+
+    public function post(Request $request)
+    {
+        // ツイートはpostTweet()で行う
+        // 引数は配列
+        // status => ツイート内容
+        Twitter::postTweet([
+            'status' => $request->status
+        ]);
+        // 一覧ページへリダイレクト
+        return redirect()->route('twitter.index');
+    }
 }

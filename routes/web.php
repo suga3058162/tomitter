@@ -21,3 +21,8 @@ Route::get('twitter', 'TwitterController@index')->name('twitter.index');
 Route::get('twitter/login', 'TwitterController@login')->name('twitter.login');
 Route::get('twitter/callback', 'TwitterController@callback')->name('twitter.callback');
 Route::get('twitter/logout', 'TwitterController@logout')->name('twitter.logout');
+
+// ツイートする画面
+Route::get('tweet', 'TwitterController@tweet');
+// ツイート処理
+Route::post('/tweet', 'TwitterController@post')->name('twitter.post');
