@@ -32,9 +32,12 @@ class TwitterController extends Controller
         'format' => 'array'
     ]);
     // dd($home_time_lines);
+
+    // ログインユーザー
+    $loginuser = $authorized_user->id;
     
     // ビュー
-    return view('twitter.index', compact('home_time_lines'));
+    return view('twitter.index', compact('home_time_lines','loginuser'));
     }
 
     public function login()
@@ -152,6 +155,24 @@ class TwitterController extends Controller
         ]);
         // 一覧ページへリダイレクト
         return redirect()->route('twitter.index');
-        
+    }
+
+    public function destroy(Request $request,$id)
+    {
+        // dd($request);
+        // ツイート削除はdestroyTweet()で行う
+        // 引数は配列
+        // status => ツイート内容
+        // Twitter::destroyTweet(
+        //     $id = $request->id;
+        //     [
+        //     'status' => $request->status
+        //     ]
+        // );
+        // $id = 952948049491341312;
+        // dd($id);
+        Twitter::destroyTweet($id,['status' => $request->status]);
+        // 一覧ページへリダイレクト
+        return redirect()->route('twitter.index');
     }
 }

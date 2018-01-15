@@ -26,3 +26,5 @@ Route::get('twitter/logout', 'TwitterController@logout')->name('twitter.logout')
 Route::get('tweet', 'TwitterController@tweet');
 // ツイート処理
 Route::post('/tweet', 'TwitterController@post')->name('twitter.post');
+// ツイート削除処理
+Route::post('/tweet/destroy/{id}', 'TwitterController@destroy');
