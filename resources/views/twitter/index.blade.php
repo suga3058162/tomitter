@@ -7,6 +7,7 @@
 <body>
 <p>フォロワーのツイートを取得</p>
 @foreach($home_time_lines as $home_time_line)
+{{ $home_time_line['user']['name'] }}</br>
 {{ $home_time_line['created_at'] }}</br>
 {{ $home_time_line['text'] }}</br></br></br></br></br></p>
 @endforeach
