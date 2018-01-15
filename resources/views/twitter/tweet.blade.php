@@ -6,6 +6,14 @@
 </head>
 <body>
 <p>新規ツイートする</p>
-
+<form method="post" action="{{ url('/tweet') }}">
+  {{ csrf_field() }}
+  <p>
+    <textarea name="status" placeholder="今どんな気分？"></textarea>
+  </p>
+  <p>
+    <input type="submit" value="ツイートする">
+  </p>
+</form>
 </body>
 </html>
