@@ -152,5 +152,6 @@ class TwitterController extends Controller
         ]);
         // 一覧ページへリダイレクト
         return redirect()->route('twitter.index');
+        
     }
 }
