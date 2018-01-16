@@ -175,4 +175,37 @@ class TwitterController extends Controller
         // 一覧ページへリダイレクト
         return redirect()->route('twitter.index');
     }
+
+    public function list()
+    {
+        $authorized_user = Twitter::getCredentials();
+        $lists = Twitter::getLists([
+            'user_id' => $authorized_user->id,
+            'screen_name' => $authorized_user->screen_name
+        ]);
+        // dd($lists);
+        
+        $listStatuses = Twitter::getListStatuses([
+            'list_id' => 953306655306874880,
+            'owner_id' => $authorized_user->id,
+            // 取得件数
+            'count' => 10,
+            // 取得結果の型
+            'format' => 'array'
+        ]);
+        // dd($listStatuses);
+        $loginuser = $authorized_user->id;
+        return view('twitter.list', compact('listStatuses','loginuser'));
+    }
+
+    public function follow(Request $request,$user_id)
+    {
+        $authorized_user = Twitter::getCredentials();
+        Twitter::postFollow([
+            //フォローする人
+            'user_id' => $user_id
+        ]);
+        // リストページへリダイレクト
+        return redirect()->route('twitter.list');
+    }
 }

@@ -28,3 +28,9 @@ Route::get('tweet', 'TwitterController@tweet');
 Route::post('/tweet', 'TwitterController@post')->name('twitter.post');
 // ツイート削除処理
 Route::post('/tweet/destroy/{id}', 'TwitterController@destroy');
+
+// リスト画面
+Route::get('list', 'TwitterController@list')->name('twitter.list');
+
+// フォロー処理
+Route::post('/list/follow/{user_id}', 'TwitterController@follow');
