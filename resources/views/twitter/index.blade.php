@@ -5,13 +5,13 @@
 <title>tomitter</title>
 </head>
 <body>
-<a href="/tweet">ツイートする</a>
-<p>フォロワーのツイートを取得</p>
+<a href="/tweet">ツイートする</a><br>
+<h2>timeline</h2>
     @foreach($home_time_lines as $home_time_line)
-        {{ $home_time_line['id'] }}<br><br>
-        {{ $home_time_line['user']['id'] }}
-        {{ $home_time_line['user']['name'] }}</br>
-        {{ $home_time_line['created_at'] }}</br>
+        tweet id:{{ $home_time_line['id'] }}<br>
+        user id:{{ $home_time_line['user']['id'] }}<br>
+        user name:{{ $home_time_line['user']['name'] }}<br>
+        created_at:{{ $home_time_line['created_at'] }}<br><br>
         {{ $home_time_line['text'] }}
         @if($loginuser === $home_time_line['user']['id'])
             <form method="post" action="{{ url('/tweet/destroy/'.$home_time_line['id']) }}">
@@ -21,7 +21,7 @@
                 <input type="submit" value="ツイート削除">
             </form>
         @endif
-        </br></br>
+        <br><br><br><br><br><br>
     @endforeach
 </body>
 </html>
