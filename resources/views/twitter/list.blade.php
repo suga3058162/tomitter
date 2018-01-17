@@ -5,8 +5,8 @@
 <title>tomitter</title>
 </head>
 <body>
-<a href="/twitter">back to timeline</a><br>
-<h2>list_timeline</h2>
+<a href="/twitter">タイムライン画面へ</a><br>
+<h2>料理リストのタイムライン</h2>
     @foreach($listStatuses as $listStatuse)
         tweet id:{{ $listStatuse['id'] }}<br>
         user id:{{ $listStatuse['user']['id'] }}<br>

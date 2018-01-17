@@ -12,7 +12,6 @@ use File;
 use Redirect;
 use Twitter;
 use App\User;
-// use App;
 
 class TwitterController extends Controller
 {
@@ -62,7 +61,7 @@ class TwitterController extends Controller
     public function logout()
     {
          Session::forget('access_token');
-          return Redirect('');
+          return Redirect('/');
     }
 
     public function callback(Request $request)
@@ -98,7 +97,7 @@ class TwitterController extends Controller
             if (!isset($token['oauth_token_secret'])) {
                 return Redirect::route('twitter.login')->with('flash_error', 'We could not log you in on Twitter.');
             }
-            
+
             // 認証に成功したユーザーの情報取得
             $credentials = Twitter::getCredentials();
 

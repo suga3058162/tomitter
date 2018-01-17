@@ -5,7 +5,7 @@
 <title>tomitter</title>
 </head>
 <body>
-<a href="/twitter">back to timeline</a><br>
+<a href="/twitter">タイムライン画面へ</a><br>
 <h2>ツイートする</h2>
 <form method="post" action="{{ url('/tweet') }}">
   {{ csrf_field() }}

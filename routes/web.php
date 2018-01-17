@@ -13,19 +13,25 @@
 
 Auth::routes();
 
+// ログイン前画面
 Route::get('/', 'RegistrationController@index');
 
-//タイムラインの表示
+// タイムライン
 Route::get('twitter', 'TwitterController@index')->name('twitter.index');
 
+//　ログイン、ログアウト
 Route::get('twitter/login', 'TwitterController@login')->name('twitter.login');
-Route::get('twitter/callback', 'TwitterController@callback')->name('twitter.callback');
 Route::get('twitter/logout', 'TwitterController@logout')->name('twitter.logout');
 
-// ツイートする画面
+// コールバック
+Route::get('twitter/callback', 'TwitterController@callback')->name('twitter.callback');
+
+// ツイートフォーム画面
 Route::get('tweet', 'TwitterController@tweet');
+
 // ツイート処理
 Route::post('/tweet', 'TwitterController@post')->name('twitter.post');
+
 // ツイート削除処理
 Route::post('/tweet/destroy/{id}', 'TwitterController@destroy');
 
@@ -35,5 +41,5 @@ Route::get('list', 'TwitterController@list')->name('twitter.list');
 // フォロー処理
 Route::post('/list/follow/{user_id}', 'TwitterController@follow');
 
-// フォロー処理
+// フォロー削除処理
 Route::post('/list/unfollow/{user_id}', 'TwitterController@unfollow');

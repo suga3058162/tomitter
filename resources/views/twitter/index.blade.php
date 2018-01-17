@@ -5,6 +5,7 @@
 <title>tomitter</title>
 </head>
 <body>
+<a href="twitter/logout">ログアウト</a><br>
 <a href="/list">リスト画面へ</a><br>
 <a href="/tweet">ツイートする</a><br>
 <h2>タイムライン</h2>
