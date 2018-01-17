@@ -12,6 +12,7 @@ use File;
 use Redirect;
 use Twitter;
 use App\User;
+// use App;
 
 class TwitterController extends Controller
 {
@@ -183,15 +184,12 @@ class TwitterController extends Controller
             'user_id' => $authorized_user->id,
             'screen_name' => $authorized_user->screen_name
         ]);
-        // dd($lists);
 
         // フォローしているユーザーid
         $loginuser = $authorized_user->id;
-        $followinguser = Twitter::getFriendsIds(['user_id' => $loginuser]);
-        // dd(getType($followinguser));
-        dd($followinguser);
-        dd($followinguser->ids[0]);//2416790988
-        
+        $getFriendsIds = Twitter::getFriendsIds(['user_id' => $loginuser]);
+        $followingusers = $getFriendsIds->ids;
+
         $listStatuses = Twitter::getListStatuses([
             'list_id' => 953306655306874880,
             'owner_id' => $authorized_user->id,
@@ -200,9 +198,10 @@ class TwitterController extends Controller
             // 取得結果の型
             'format' => 'array'
         ]);
-        // dd($listStatuses);
 
-        return view('twitter.list', compact('listStatuses','loginuser','followinguser'));
+        // $user = App::make('/app/User.php');
+
+        return view('twitter.list', compact('listStatuses','loginuser','followingusers'));
     }
 
     public function follow(Request $request,$user_id)
@@ -226,4 +225,5 @@ class TwitterController extends Controller
         // リストページへリダイレクト
         return redirect()->route('twitter.list');
     }
+
 }

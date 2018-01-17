@@ -55,4 +55,27 @@ class User extends Authenticatable
         return $isTwitterOAuth;
     }
 
+    // public function isLiked() {
+    //     $like = Like::where('post_id', $this->id)->where('user_id', Auth::user()->id)->first();
+    //     logger(isset($like));
+    //     return isset($like);
+    //   }
+
+
+    public function isFollowed($postUserId)
+    {
+        $authorized_user = Twitter::getCredentials();
+        $loginuser = $authorized_user->id;
+
+        $getFriendsIds = Twitter::getFriendsIds(['user_id' => $loginuser]);
+        $followinguser = $getFriendsIds->ids;
+
+        if(in_array($postUserId, $getFriendsIds))
+        {
+            $isFollowed = true;
+        }else{
+            $isFollowed = false;
+        }
+        return $isFollowed;
+    }
 }

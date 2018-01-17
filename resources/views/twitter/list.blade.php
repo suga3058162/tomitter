@@ -13,19 +13,19 @@
         user name:{{ $listStatuse['user']['name'] }}<br>
         created_at:{{ $listStatuse['created_at'] }}<br><br>
         {{ $listStatuse['text'] }}
-        @if($followinguser === $listStatuse['user']['id'])
-            <form method="post" action="{{ url('/list/follow/'.$listStatuse['user']['id']) }}">
-            {{ csrf_field() }}
-                <input type="hidden" name="status">
-                <input type="hidden" name="user_id" value="{{ $listStatuse['user']['id'] }}">
-                <input type="submit" value="フォローする">
-            </form>
-        @else
+        @if(in_array($listStatuse['user']['id'],$followingusers))
             <form method="post" action="{{ url('/list/unfollow/'.$listStatuse['user']['id']) }}">
-            {{ csrf_field() }}
+                {{ csrf_field() }}
                 <input type="hidden" name="status">
                 <input type="hidden" name="user_id" value="{{ $listStatuse['user']['id'] }}">
                 <input type="submit" value="フォロー解除">
+            </form>
+        @else
+            <form method="post" action="{{ url('/list/follow/'.$listStatuse['user']['id']) }}">
+                {{ csrf_field() }}
+                <input type="hidden" name="status">
+                <input type="hidden" name="user_id" value="{{ $listStatuse['user']['id'] }}">
+                <input type="submit" value="フォローする">
             </form>
         @endif
         <br><br><br><br><br><br>

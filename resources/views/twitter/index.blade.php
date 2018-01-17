@@ -5,6 +5,7 @@
 <title>tomitter</title>
 </head>
 <body>
+<a href="/list">リスト画面へ</a><br>
 <a href="/tweet">ツイートする</a><br>
 <h2>timeline</h2>
     @foreach($home_time_lines as $home_time_line)
