@@ -34,3 +34,6 @@ Route::get('list', 'TwitterController@list')->name('twitter.list');
 
 // フォロー処理
 Route::post('/list/follow/{user_id}', 'TwitterController@follow');
+
+// フォロー処理
+Route::post('/list/unfollow/{user_id}', 'TwitterController@unfollow');

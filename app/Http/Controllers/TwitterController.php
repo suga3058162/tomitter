@@ -184,6 +184,13 @@ class TwitterController extends Controller
             'screen_name' => $authorized_user->screen_name
         ]);
         // dd($lists);
+
+        // フォローしているユーザーid
+        $loginuser = $authorized_user->id;
+        $followinguser = Twitter::getFriendsIds(['user_id' => $loginuser]);
+        // dd(getType($followinguser));
+        dd($followinguser);
+        dd($followinguser->ids[0]);
         
         $listStatuses = Twitter::getListStatuses([
             'list_id' => 953306655306874880,
@@ -194,14 +201,25 @@ class TwitterController extends Controller
             'format' => 'array'
         ]);
         // dd($listStatuses);
-        $loginuser = $authorized_user->id;
-        return view('twitter.list', compact('listStatuses','loginuser'));
+
+        return view('twitter.list', compact('listStatuses','loginuser','followinguser'));
     }
 
     public function follow(Request $request,$user_id)
     {
         $authorized_user = Twitter::getCredentials();
         Twitter::postFollow([
+            //フォローする人
+            'user_id' => $user_id
+        ]);
+        // リストページへリダイレクト
+        return redirect()->route('twitter.list');
+    }
+
+    public function unfollow(Request $request,$user_id)
+    {
+        $authorized_user = Twitter::getCredentials();
+        Twitter::postUnfollow([
             //フォローする人
             'user_id' => $user_id
         ]);
