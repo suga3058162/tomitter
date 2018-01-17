@@ -6,7 +6,7 @@
 </head>
 <body>
 <a href="/twitter">タイムライン画面へ</a><br>
-<h2>料理リストのタイムライン</h2>
+<h2>{{ $listName }}リストのタイムライン</h2>
     @foreach($listStatuses as $listStatuse)
         tweet id:{{ $listStatuse['id'] }}<br>
         user id:{{ $listStatuse['user']['id'] }}<br>

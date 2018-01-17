@@ -152,10 +152,11 @@ class TwitterController extends Controller
     public function list()
     {
         $authorized_user = Twitter::getCredentials();
-        $lists = Twitter::getLists([
+        $list = Twitter::getLists([
             'user_id' => $authorized_user->id,
             'screen_name' => $authorized_user->screen_name
         ]);
+        $listName = $list[0]->name;
 
         // フォローしているユーザーid
         $loginuser = $authorized_user->id;
@@ -163,7 +164,7 @@ class TwitterController extends Controller
         $followingusers = $getFriendsIds->ids;
 
         $listStatuses = Twitter::getListStatuses([
-            'list_id' => 953306655306874880,
+            'list_id' => $list[0]->id,
             'owner_id' => $authorized_user->id,
             // 取得件数
             'count' => 10,
@@ -171,7 +172,7 @@ class TwitterController extends Controller
             'format' => 'array'
         ]);
 
-        return view('twitter.list', compact('listStatuses','loginuser','followingusers'));
+        return view('twitter.list', compact('listStatuses','loginuser','followingusers','listName'));
     }
 
     public function follow(Request $request,$user_id)
