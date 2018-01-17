@@ -190,7 +190,7 @@ class TwitterController extends Controller
         $followinguser = Twitter::getFriendsIds(['user_id' => $loginuser]);
         // dd(getType($followinguser));
         dd($followinguser);
-        dd($followinguser->ids[0]);
+        dd($followinguser->ids[0]);//2416790988
         
         $listStatuses = Twitter::getListStatuses([
             'list_id' => 953306655306874880,
