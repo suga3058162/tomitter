@@ -43,3 +43,9 @@ Route::post('/list/follow/{user_id}', 'TwitterController@follow');
 
 // フォロー削除処理
 Route::post('/list/unfollow/{user_id}', 'TwitterController@unfollow');
+
+// いいね！処理
+Route::post('/tweet/favorite/{id}', 'TwitterController@favorite');
+
+// いいね！削除処理
+Route::post('/tweet/unfavorite/{id}', 'TwitterController@unfavorite');

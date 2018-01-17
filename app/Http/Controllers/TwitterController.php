@@ -32,6 +32,10 @@ class TwitterController extends Controller
     // ログインユーザー
     $loginuser = $authorized_user->id;
 
+    // いいね！しているツイートid
+    // $getFavorites = Twitter::getFavorites(['user_id' => $loginuser]);
+    // $favoriteIds = array_column($getFavorites,'id');
+
     // ビュー
     return view('twitter.index', compact('home_time_lines','loginuser'));
     }
@@ -156,6 +160,7 @@ class TwitterController extends Controller
             'user_id' => $authorized_user->id,
             'screen_name' => $authorized_user->screen_name
         ]);
+        // 最新のリスト1件を取得
         $listName = $list[0]->name;
 
         // フォローしているユーザーid
@@ -195,6 +200,20 @@ class TwitterController extends Controller
         ]);
         // リストページへリダイレクト
         return redirect()->route('twitter.list');
+    }
+
+    public function favorite(Request $request,$id)
+    {
+        Twitter::postFavorite(['id' => $id]);
+        // 一覧ページへリダイレクト
+        return redirect()->route('twitter.index');
+    }
+
+    public function unfavorite(Request $request,$id)
+    {
+        Twitter::destroyFavorite(['id' => $id]);
+        // 一覧ページへリダイレクト
+        return redirect()->route('twitter.index');
     }
 
 }
