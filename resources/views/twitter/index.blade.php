@@ -7,7 +7,7 @@
 <body>
 <a href="/list">リスト画面へ</a><br>
 <a href="/tweet">ツイートする</a><br>
-<h2>timeline</h2>
+<h2>タイムライン</h2>
     @foreach($home_time_lines as $home_time_line)
         tweet id:{{ $home_time_line['id'] }}<br>
         user id:{{ $home_time_line['user']['id'] }}<br>

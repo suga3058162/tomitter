@@ -20,10 +20,7 @@ class TwitterController extends Controller
     {
     // 認証されたユーザー情報の取得
     $authorized_user = Twitter::getCredentials();
-    // dd($authorized_user);
     // タイムラインの取得
-    // getHomeTimeline()は自分がフォローしているいユーザーのツイートを取得する
-    // 配列でオプションを指定する
     $home_time_lines = Twitter::getHomeTimeline([
         // screen_nameは@以降の部分
         'screen_name' => $authorized_user->screen_name,
@@ -32,11 +29,10 @@ class TwitterController extends Controller
         // 取得結果の型
         'format' => 'array'
     ]);
-    // dd($home_time_lines);
 
     // ログインユーザー
     $loginuser = $authorized_user->id;
-    
+
     // ビュー
     return view('twitter.index', compact('home_time_lines','loginuser'));
     }
@@ -72,7 +68,7 @@ class TwitterController extends Controller
     public function callback(Request $request)
     {
         // キャンセルが押されたときの処理
-        // deniedが必ずパラメータについているのでそれで判断します。
+        // deniedが必ずパラメータについているのでそれで判断
         $is_cancel = key($request->query()) === 'denied' ? true : false;
         if ($is_cancel) {
             return redirect('/');
@@ -108,14 +104,6 @@ class TwitterController extends Controller
 
             // 問題ない時の処理
             if (is_object($credentials) && !isset($credentials->error)) {
-                // $credentials contains the Twitter user object with all the info about the user.
-                // Add here your own user logic, store profiles, create new users on your tables...you name it!
-                // Typically you'll want to store at least, user id, name and access tokens
-                // if you want to be able to call the API on behalf of your users.
-
-                // This is also the moment to log in your users if you're using Laravel's Auth class
-                // Auth::login($user) should do the trick.
-
                 // sessionに接続情報に保存
                 Session::put('access_token', $token);
 
@@ -148,11 +136,8 @@ class TwitterController extends Controller
 
     public function post(Request $request)
     {
-        // ツイートはpostTweet()で行う
-        // 引数は配列
-        // status => ツイート内容
         Twitter::postTweet([
-            'status' => $request->status
+            'status' => $request->status // ツイート内容
         ]);
         // 一覧ページへリダイレクト
         return redirect()->route('twitter.index');
@@ -160,18 +145,6 @@ class TwitterController extends Controller
 
     public function destroy(Request $request,$id)
     {
-        // dd($request);
-        // ツイート削除はdestroyTweet()で行う
-        // 引数は配列
-        // status => ツイート内容
-        // Twitter::destroyTweet(
-        //     $id = $request->id;
-        //     [
-        //     'status' => $request->status
-        //     ]
-        // );
-        // $id = 952948049491341312;
-        // dd($id);
         Twitter::destroyTweet($id,['status' => $request->status]);
         // 一覧ページへリダイレクト
         return redirect()->route('twitter.index');
@@ -199,8 +172,6 @@ class TwitterController extends Controller
             'format' => 'array'
         ]);
 
-        // $user = App::make('/app/User.php');
-
         return view('twitter.list', compact('listStatuses','loginuser','followingusers'));
     }
 
@@ -208,7 +179,7 @@ class TwitterController extends Controller
     {
         $authorized_user = Twitter::getCredentials();
         Twitter::postFollow([
-            //フォローする人
+            // フォローする人
             'user_id' => $user_id
         ]);
         // リストページへリダイレクト
@@ -219,7 +190,7 @@ class TwitterController extends Controller
     {
         $authorized_user = Twitter::getCredentials();
         Twitter::postUnfollow([
-            //フォローする人
+            // フォローする人
             'user_id' => $user_id
         ]);
         // リストページへリダイレクト

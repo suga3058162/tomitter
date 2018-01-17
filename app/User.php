@@ -2,15 +2,11 @@
 
 namespace App;
 
-// use Illuminate\Notifications\Notifiable;
-// use Illuminate\Foundation\Auth\User as Authenticatable;
-
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-// use App\Traits\UserObservable;
 
 class User extends Authenticatable
 {
@@ -54,13 +50,6 @@ class User extends Authenticatable
         }
         return $isTwitterOAuth;
     }
-
-    // public function isLiked() {
-    //     $like = Like::where('post_id', $this->id)->where('user_id', Auth::user()->id)->first();
-    //     logger(isset($like));
-    //     return isset($like);
-    //   }
-
 
     public function isFollowed($postUserId)
     {
