@@ -23,7 +23,6 @@
                 <input type="submit" value="ツイート削除">
             </form>
         @endif
-        {{--
         @if(in_array($home_time_line['id'],$favoriteIds))
             <form method="post" action="{{ url('/tweet/unfavorite/'.$home_time_line['id']) }}">
                 {{ csrf_field() }}
@@ -32,14 +31,13 @@
                     <input type="submit" value="いいね！解除">
             </form>
         @else
-        @endif
-        --}}
         <form method="post" action="{{ url('/tweet/favorite/'.$home_time_line['id']) }}">
             {{ csrf_field() }}
                 <input type="hidden" name="status">
                 <input type="hidden" name="id" value="{{ $home_time_line['id'] }}">
                 <input type="submit" value="いいね！">
         </form>
+        @endif
         <br><br><br><br><br><br>
     @endforeach
 </body>

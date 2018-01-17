@@ -32,12 +32,11 @@ class TwitterController extends Controller
     // ログインユーザー
     $loginuser = $authorized_user->id;
 
-    // いいね！しているツイートid
-    // $getFavorites = Twitter::getFavorites(['user_id' => $loginuser]);
-    // $favoriteIds = array_column($getFavorites,'id');
+    // いいね！しているツイートidを取得
+    $getFavorites = Twitter::getFavorites(['user_id' => $loginuser]);
+    $favoriteIds = array_column($getFavorites,'id');
 
-    // ビュー
-    return view('twitter.index', compact('home_time_lines','loginuser'));
+    return view('twitter.index', compact('home_time_lines','loginuser','favoriteIds'));
     }
 
     public function login()
