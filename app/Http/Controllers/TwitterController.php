@@ -215,4 +215,15 @@ class TwitterController extends Controller
         return redirect()->route('twitter.index');
     }
 
+    public function apiFavorite (Request $request,$id)
+    {
+        Twitter::postFavorite(['id' => $id]);
+
+        $authorized_user = Twitter::getCredentials();
+        $loginuser = $authorized_user->id;
+
+        
+        return json_encode($loginuser);
+    }
+
 }

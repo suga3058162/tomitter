@@ -49,3 +49,6 @@ Route::post('/tweet/favorite/{id}', 'TwitterController@favorite');
 
 // いいね！削除処理
 Route::post('/tweet/unfavorite/{id}', 'TwitterController@unfavorite');
+
+// いいね！api
+Route::post('api/fav/{id}', 'TwitterController@apiFavorite');
