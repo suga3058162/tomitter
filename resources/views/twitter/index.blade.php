@@ -9,7 +9,8 @@
 <a href="twitter/logout">ログアウト</a><br>
 <a href="/list">リスト画面へ</a><br>
 <a href="/tweet">ツイートする</a><br>
-{{ dd($loginuser) }}
+<div id="app"></div>
+<script src="js/app.js"></script>
 <h2>タイムライン</h2>
     @foreach($home_time_lines as $home_time_line)
         tweet id:{{ $home_time_line['id'] }}<br>
@@ -46,7 +47,7 @@
                 <input type="hidden" name="id" value="{{ $home_time_line['id'] }}">
                 <input type="submit" value="いいね！">
         </form>
-        <div class="project__likeBtn
+        <div class="project__likeBtn"
                             data-id="{{ $home_time_line['id'] }}"
                             data-user-id="{{ $loginuser }}">お気に入り</div>
         @endif

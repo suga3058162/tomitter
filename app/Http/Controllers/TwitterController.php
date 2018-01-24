@@ -69,6 +69,7 @@ class TwitterController extends Controller
 
     public function callback(Request $request)
     {
+        dd(var_dump($request));
         // キャンセルが押されたときの処理
         // deniedが必ずパラメータについているのでそれで判断
         $is_cancel = key($request->query()) === 'denied' ? true : false;
