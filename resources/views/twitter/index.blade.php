@@ -9,7 +9,7 @@
 <a href="twitter/logout">ログアウト</a><br>
 <a href="/list">リスト画面へ</a><br>
 <a href="/tweet">ツイートする</a><br>
-{{ dd($loginuser) }}
+
 <h2>タイムライン</h2>
     @foreach($home_time_lines as $home_time_line)
         tweet id:{{ $home_time_line['id'] }}<br>
