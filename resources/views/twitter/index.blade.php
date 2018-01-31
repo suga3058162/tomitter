@@ -39,16 +39,6 @@
                 <input type="hidden" name="id" value="{{ $home_time_line['id'] }}">
                 <input type="submit" value="いいね！">
         </form>
-
-        <form method="post" action="{{ url('api/fav/' . $home_time_line['id']) }}">
-            {{ csrf_field() }}
-                <input type="hidden" name="status">
-                <input type="hidden" name="id" value="{{ $home_time_line['id'] }}">
-                <input type="submit" value="いいね！">
-        </form>
-        <div class="project__likeBtn
-                            data-id="{{ $home_time_line['id'] }}"
-                            data-user-id="{{ $loginuser }}">お気に入り</div>
         @endif
         <br><br><br><br><br><br>
     @endforeach
