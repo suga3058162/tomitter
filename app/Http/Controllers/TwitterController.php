@@ -179,6 +179,28 @@ class TwitterController extends Controller
         return view('twitter.list', compact('listStatuses','loginuser','followingusers','listName'));
     }
 
+    public function followRetweet(Request $request)
+    {
+        $authorized_user = Twitter::getCredentials();
+
+        $input = $request->all();
+        // dd($input);
+
+        $user_id = $request["user_id"];
+        $id = $request["retweet_id"];
+
+        Twitter::postFollow([
+            // フォローする人
+            'user_id' => $user_id
+        ]);
+
+        //リツイート
+        Twitter::postRt($id,['status' => $request->status]);
+
+        // リストページへリダイレクト
+        return redirect()->route('twitter.list');
+    }
+
     public function follow(Request $request,$user_id)
     {
         $authorized_user = Twitter::getCredentials();

@@ -28,6 +28,13 @@
                 <input type="submit" value="フォローする">
             </form>
         @endif
+        <form method="post" action="{{ url('/list/follow_retweet/') }}">
+            {{ csrf_field() }}
+            <input type="hidden" name="status">
+            <input type="hidden" name="user_id" value="{{ $listStatuse['user']['id'] }}">
+            <input type="hidden" name="retweet_id" value="{{ $listStatuse['id'] }}">
+            <input type="submit" value="リツイート&フォローする">
+        </form>
         <br><br><br><br><br><br>
     @endforeach
 </body>

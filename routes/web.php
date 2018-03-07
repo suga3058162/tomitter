@@ -52,3 +52,7 @@ Route::post('/tweet/unfavorite/{id}', 'TwitterController@unfavorite');
 
 // いいね！api
 Route::post('api/fav/{id}', 'TwitterController@apiFavorite');
+
+
+// フォロー&リツイート処理
+Route::post('/list/follow_retweet/', 'TwitterController@followRetweet');
